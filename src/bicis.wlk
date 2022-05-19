@@ -7,4 +7,6 @@ class Bicicletas {
 	method altura() = rodado*2.5 + 15
 	
 	method velocidadCrucero() = if (largo>120){rodado+6}else{rodado+2}
+	
+	
 }
