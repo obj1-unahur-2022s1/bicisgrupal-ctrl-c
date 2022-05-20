@@ -17,4 +17,6 @@ class Bicicletas {
 	method tieneLuz() = accesorios.any({ a => a.esLuminoso() })
 	
 	method cantidadAccesoriosLivianos() = accesorios.count({ a => a.peso() < 1 })
+	
+	method esRapida() = self.velocidadCrucero() > 25
 }

@@ -1,0 +1,54 @@
+import accesorios.*
+import bicis.*
+import Deposito.*
+
+/*Por ejemplo, para un depósito que tiene las tres bicis descriptas en el punto anterior, tenemos:
+
+las bicis rápidas son las dos primeras (la rodado 28 y la rodado 26).
+las marcas son "Olmo" y "Legnano".
+el depósito no es nocturno (por la tercera bici).
+sí tiene bici para llevar 10 kilos, no tiene bici para llevar 50 kilos.
+Un depósito que tenga solamente las dos primeras bicis, sí es nocturno. */
+
+describe "test global depositos" {
+	
+	var bici1 = new Bicicletas(rodado = 28, largo = 150, marca = "Olmo", accesorios = [farolito])
+	var bici2 = new Bicicletas(rodado = 26, largo = 110, marca = "Legnano", accesorios = [farolito, new Canasto(volumen = 8), new Morral(largo = 21)])
+	var bici3 = new Bicicletas(rodado = 20, largo = 90, marca = "Legnano", accesorios = [new Morral(largo = 6, tieneOjoDeGato = false)])
+	var depo1 = new Deposito(bicis = [bici1, bici2, bici3])
+	var depo2 = new Deposito(bicis = [bici1, bici2]
+		
+	)
+	test "test Rapidas" {
+		
+		assert.that(depo1.bicis().get(0).esRapida())
+		assert.that(depo1.bicis().get(1).esRapida())
+		
+		}
+	test "Marcas" {
+		//assert.that(depo1.bicis().tienMarca("Olmo") && depo1.bicis().tienMarca("Legnano")  )
+		assert.equals(["Olmo","Legnano"], depo1.bicis().marcas())
+		}
+
+	test "Depo nocturno" {
+		
+		assert.that(!depo1.esNocturno())
+		}
+	
+	test "Tiene bici para 10kg" {
+		assert.that(depo1.bicis().any( { b => b.carga() >= 10 } ))
+		
+	}	
+	
+	test "No Tiene bici para 50kg" {
+		assert.that(!depo1.bicis().any( { b => b.carga() >= 50 } ))
+		
+	}
+	
+	test "Dos primeras si nocturno" {
+		assert.that(depo2.esNocturno())
+		
+	}
+	
+		
+	}
