@@ -27,7 +27,7 @@ describe "test global depositos" {
 		}
 	test "Marcas" {
 		//assert.that(depo1.bicis().tienMarca("Olmo") && depo1.bicis().tienMarca("Legnano")  )
-		assert.equals(["Olmo","Legnano"], depo1.bicis().marcas())
+		assert.equals(["Legnano", "Olmo"], depo1.bicis().map( { b => b.marca() } ).asSet() )
 		}
 
 	test "Depo nocturno" {
