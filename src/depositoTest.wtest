@@ -1,6 +1,6 @@
 import accesorios.*
 import bicis.*
-import Deposito.*
+import deposito.*
 
 /*Por ejemplo, para un depósito que tiene las tres bicis descriptas en el punto anterior, tenemos:
 
@@ -12,30 +12,30 @@ Un depósito que tenga solamente las dos primeras bicis, sí es nocturno. */
 
 describe "test global depositos" {
 	
-	var bici1 = new Bicicletas(rodado = 28, largo = 150, marca = "Olmo", accesorios = [farolito])
-	var bici2 = new Bicicletas(rodado = 26, largo = 110, marca = "Legnano", accesorios = [farolito, new Canasto(volumen = 8), new Morral(largo = 21)])
+	var bici1 = new Bicicletas(rodado = 28, largo = 180, marca = "Olmo", accesorios = [farolito])
+	var bici2 = new Bicicletas(rodado = 26, largo = 180, marca = "Legnano", accesorios = [farolito, new Canasto(volumen = 8), new Morral(largo = 21)])
 	var bici3 = new Bicicletas(rodado = 20, largo = 90, marca = "Legnano", accesorios = [new Morral(largo = 6, tieneOjoDeGato = false)])
+	var bici4 = new Bicicletas(rodado = 28, largo = 180, marca = "Olmo")
+	
 	var depo1 = new Deposito(bicis = [bici1, bici2, bici3])
-	var depo2 = new Deposito(bicis = [bici1, bici2]
+	var depo2 = new Deposito(bicis = [bici1, bici2])
+	var depo3 = new Deposito(bicis = [bici1, bici2, bici4])
 		
-	)
 	test "test Rapidas" {
 		
 		assert.that(depo1.bicis().get(0).esRapida())
 		assert.that(depo1.bicis().get(1).esRapida())
 		
 		}
-	test "Marcas1" {
-		//assert.that(depo1.bicis().tienMarca("Olmo") && depo1.bicis().tienMarca("Legnano")  )
-		assert.equals(["Legnano", "Olmo"], depo1.bicis().map( { b => b.marca() } ).asSet() )
+	test "Marcas" {
+		assert.that(#{"Legnano", "Olmo"} == depo1.marcas() )
 		}
 
-	test "Marcas2" {
+	/*test "Marcas2" {
 		assert.that(depo1.tieneMarca("Legnano") && depo1.tieneMarca("Olmo") )
-		}
+		}*/
 	
 	test "Depo nocturno" {
-		
 		assert.that(!depo1.esNocturno())
 		}
 	
@@ -54,5 +54,16 @@ describe "test global depositos" {
 		
 	}
 	
+	test "Marca de la bici mas rápida"{
+		assert.equals("Olmo",depo1.biciMasRapida())
+	}
+	
+	test "Carga total de las bicis largas"{
+		assert.equals(23,depo1.cargaBicisLargas()) //16 del canasto + 7 del morral de la bici2
+	}
+	
+	test "Cantidad total de bicis sin accesorios"{
+		assert.equals(1,depo3.bicisSinAccesorios())
+	}
 		
 	}
