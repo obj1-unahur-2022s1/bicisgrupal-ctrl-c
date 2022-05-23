@@ -19,4 +19,8 @@ class Bicicletas {
 	method cantidadAccesoriosLivianos() = accesorios.count({ a => a.peso() < 1 })
 	
 	method esRapida() = self.velocidadCrucero() > 25
+	//Punto 4
+	method esCompanieraDe(bici) = if (bici != self) 
+		{self.marca() == bici.marca() && self.largo() - bici.largo() <= 10}
+		else { false } 
 }

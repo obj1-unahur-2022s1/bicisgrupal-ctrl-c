@@ -32,5 +32,8 @@ class Deposito {
 	Se pudo resolver el test con el method marcas(), yo diria de borrar este otro  
 	method tieneMarca(marca) = bicis.any( { b => b.marca() == marca})
 	*/
-
+	//Punto 4
+	method biciCompanieraDe(bici) = bicis.filter{ b => b.esCompanieraDe(bici) }
+	
+	
 }

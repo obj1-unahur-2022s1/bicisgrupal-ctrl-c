@@ -16,10 +16,12 @@ describe "test global depositos" {
 	var bici2 = new Bicicletas(rodado = 26, largo = 180, marca = "Legnano", accesorios = [farolito, new Canasto(volumen = 8), new Morral(largo = 21)])
 	var bici3 = new Bicicletas(rodado = 20, largo = 90, marca = "Legnano", accesorios = [new Morral(largo = 6, tieneOjoDeGato = false)])
 	var bici4 = new Bicicletas(rodado = 28, largo = 180, marca = "Olmo")
+	var bici5 = new Bicicletas(rodado = 26, largo = 175, marca = "Olmo")
 	
 	var depo1 = new Deposito(bicis = [bici1, bici2, bici3])
 	var depo2 = new Deposito(bicis = [bici1, bici2])
 	var depo3 = new Deposito(bicis = [bici1, bici2, bici4])
+	var depo4 = new Deposito(bicis = [bici1, bici2, bici4,bici5])
 		
 	test "test Rapidas" {
 		
@@ -65,5 +67,9 @@ describe "test global depositos" {
 	test "Cantidad total de bicis sin accesorios"{
 		assert.equals(1,depo3.bicisSinAccesorios())
 	}
-		
+	//Punto 4
+	test "Es compañera de"{
+		assert.equals([bici1,bici4],depo4.biciCompanieraDe(bici5))
 	}
+	
+}
