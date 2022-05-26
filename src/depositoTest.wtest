@@ -2,14 +2,6 @@ import accesorios.*
 import bicis.*
 import deposito.*
 
-/*Por ejemplo, para un depósito que tiene las tres bicis descriptas en el punto anterior, tenemos:
-
-las bicis rápidas son las dos primeras (la rodado 28 y la rodado 26).
-las marcas son "Olmo" y "Legnano".
-el depósito no es nocturno (por la tercera bici).
-sí tiene bici para llevar 10 kilos, no tiene bici para llevar 50 kilos.
-Un depósito que tenga solamente las dos primeras bicis, sí es nocturno. */
-
 describe "test global depositos" {
 	
 	var bici1 = new Bicicletas(rodado = 28, largo = 180, marca = "Olmo", accesorios = [farolito])
@@ -23,19 +15,14 @@ describe "test global depositos" {
 	var depo3 = new Deposito(bicis = [bici1, bici2, bici4])
 	var depo4 = new Deposito(bicis = [bici1, bici2, bici4,bici5])
 		
-	test "test Rapidas" {
-		
+	test "test Rapidas" {	
 		assert.that(depo1.bicis().get(0).esRapida())
 		assert.that(depo1.bicis().get(1).esRapida())
-		
 		}
+		
 	test "Marcas" {
 		assert.that(#{"Legnano", "Olmo"} == depo1.marcas() )
 		}
-
-	/*test "Marcas2" {
-		assert.that(depo1.tieneMarca("Legnano") && depo1.tieneMarca("Olmo") )
-		}*/
 	
 	test "Depo nocturno" {
 		assert.that(!depo1.esNocturno())
@@ -43,17 +30,14 @@ describe "test global depositos" {
 	
 	test "Tiene bici para 10kg" {
 		assert.that(depo1.bicis().any( { b => b.carga() >= 10 } ))
-		
 	}	
 	
 	test "No Tiene bici para 50kg" {
 		assert.that(!depo1.bicis().any( { b => b.carga() >= 50 } ))
-		
 	}
 	
 	test "Dos primeras si nocturno" {
 		assert.that(depo2.esNocturno())
-		
 	}
 	
 	test "Marca de la bici mas rápida"{
@@ -61,15 +45,23 @@ describe "test global depositos" {
 	}
 	
 	test "Carga total de las bicis largas"{
-		assert.equals(23,depo1.cargaBicisLargas()) //16 del canasto + 7 del morral de la bici2
+		assert.equals(23,depo1.cargaBicisLargas()) //peso 23 = 16 del canasto + 7 del morral de la bici2
 	}
 	
 	test "Cantidad total de bicis sin accesorios"{
 		assert.equals(1,depo3.bicisSinAccesorios())
 	}
-	//Punto 4
+	
 	test "Es compañera de"{
 		assert.equals([bici1,bici4],depo4.biciCompanieraDe(bici5))
 	}
 	
+	//Desafio:
+	test "Existen compañeras en el deposito"{
+		assert.that(depo4.hayCompanieras())
+	}
+	
+	test "Las parejas de compañeras"{
+		assert.equals([bici1,bici4,bici5],depo4.parejasCompanieras())
+	}
 }
