@@ -1,10 +1,14 @@
+/*
+ * MBien. Solo modifiqué el accesorio farolito.
+ */
+
 import bicis.*
 import accesorios.*
 
 describe "test global de bicis" {
 	
-	var bici1 = new Bicicletas(rodado = 28, largo = 150, marca = "Olmo", accesorios = [farolito])
-	var bici2 = new Bicicletas(rodado = 26, largo = 110, marca = "Legnano", accesorios = [farolito, new Canasto(volumen = 8), new Morral(largo = 21)])
+	var bici1 = new Bicicletas(rodado = 28, largo = 150, marca = "Olmo", accesorios = [new Farolito()])
+	var bici2 = new Bicicletas(rodado = 26, largo = 110, marca = "Legnano", accesorios = [new Farolito(), new Canasto(volumen = 8), new Morral(largo = 21)])
 	var bici3 = new Bicicletas(rodado = 20, largo = 90, marca = "Legnano", accesorios = [new Morral(largo = 6, tieneOjoDeGato = false)])
 	
 	test "test de la bici 1" {
