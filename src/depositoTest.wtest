@@ -1,11 +1,15 @@
+/*
+ * depositoTest: MBien, solo alguna corrección menor.
+ */
+
 import accesorios.*
 import bicis.*
 import deposito.*
 
 describe "test global depositos" {
 	
-	var bici1 = new Bicicletas(rodado = 28, largo = 180, marca = "Olmo", accesorios = [farolito])
-	var bici2 = new Bicicletas(rodado = 26, largo = 180, marca = "Legnano", accesorios = [farolito, new Canasto(volumen = 8), new Morral(largo = 21)])
+	var bici1 = new Bicicletas(rodado = 28, largo = 180, marca = "Olmo", accesorios = [new Farolito()])
+	var bici2 = new Bicicletas(rodado = 26, largo = 180, marca = "Legnano", accesorios = [new Farolito(), new Canasto(volumen = 8), new Morral(largo = 21)])
 	var bici3 = new Bicicletas(rodado = 20, largo = 90, marca = "Legnano", accesorios = [new Morral(largo = 6, tieneOjoDeGato = false)])
 	var bici4 = new Bicicletas(rodado = 28, largo = 180, marca = "Olmo")
 	var bici5 = new Bicicletas(rodado = 26, largo = 175, marca = "Olmo")
@@ -33,7 +37,8 @@ describe "test global depositos" {
 	}	
 	
 	test "No Tiene bici para 50kg" {
-		assert.that(!depo1.bicis().any( { b => b.carga() >= 50 } ))
+		/*acá es mejor usar notThat */
+		assert.notThat(depo1.bicis().any( { b => b.carga() >= 50 } ))
 	}
 	
 	test "Dos primeras si nocturno" {

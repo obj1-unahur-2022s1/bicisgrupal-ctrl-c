@@ -1,4 +1,12 @@
-object farolito {
+/*
+ * accesorios: Bien+. farolito debiera implementarse como una clase, aunque parezca que 
+ * el modelo funciona como objeto, el contexto definido en el enunciado plantea que 
+ * van a existir varis bicis, y en ese escenario no podrían compartir todas el mismo 
+ * objeto farolito. Hago las correcciones al código para que funcione como clase. 
+ * Muy bien la respuesta al punto 5 sobre la pregunta realizada!
+ */
+
+class Farolito {
 	
 	method peso()= 0.5
 	
